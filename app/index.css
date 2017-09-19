@@ -1,5 +1,28 @@
 body {
   background: yellowgreen;
   color: #333;
-  font-family: sans-serif;
+  font-family: -apple-system, BlickMacSystemFont, Segoe UI, Robot, Oxygen-Sans,
+      Ubuntu, Cantarell, Helvetica Neue, sans-serif;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.languages{
+  display: flex;
+  justify-content: center;
+  padding: 0;
+}
+
+.language {
+  margin: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  list-style-type: none;
+}
+
+.language--selected {
+  color: #d0021b;
 }

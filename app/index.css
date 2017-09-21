@@ -26,3 +26,33 @@ body {
 .language--selected {
   color: #d0021b;
 }
+
+.popular-list {
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  list-style-type: none;
+}
+
+.popular-list__item {
+  margin: 20px;
+  text-align: center;
+  list-style-type: none;
+}
+
+.ranking-repo-list {
+  margin-bottom: 7px;
+  padding: 0;
+  list-style-type: none;
+}
+
+.avatar {
+  width: 150px;
+  border-radius: 50%;
+}
+
+.popular-rank {
+  margin: 10px;
+  font-size: 20px;
+}

@@ -6,11 +6,12 @@ module.exports = {
   entry: './app/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name]_bundle.js'
+    filename: '[name]_bundle.js',
+    publicPath: '/'
   },
   devtool: 'inline-source-map',
   devServer: {
-    contentBase: './dist'
+    historyApiFallback: true
   },
   module: {
     rules: [

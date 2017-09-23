@@ -12,9 +12,10 @@ function SelectLanguage(props) {
       {languages.map(function(lang) {
         return (
           <li
-            className={'language ' + (lang === props.selectedLanguage ? 'language--selected' : '')}
-            onClick={props.onSelect.bind(null, lang)}
-            key={lang}
+              className={'language ' +
+                  (lang === props.selectedLanguage ? 'language--selected' : '')}
+              onClick={props.onSelect.bind(null, lang)}
+              key={lang}
           >
             {lang}
           </li>
@@ -40,9 +41,9 @@ function RepoGrid(props) {
               <ul className='ranking-repo-list'>
                 <li>
                   <img
-                    className='avatar'
-                    src={repo.owner.avatar_url}
-                    alt={'Avatar for ' + repo.owner.login}
+                      className='avatar'
+                      src={repo.owner.avatar_url}
+                      alt={'Avatar for ' + repo.owner.login}
                   />
                 </li>
                 <li><a href={repo.html_url}>{repo.name}</a></li>
@@ -96,7 +97,6 @@ class Popular extends React.Component {
   }
 
   render() {
-    console.log(this.state.repos);
     return (
       <div>
         <SelectLanguage

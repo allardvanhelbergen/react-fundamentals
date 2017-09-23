@@ -88,6 +88,9 @@ class Popular extends React.Component {
 
     api.fetchPopularRepos(lang)
       .then(function(repos) {
+        /** TODO: this still fires when the component has been discarded by
+          navigating away, and results in a React warning.
+          Perhaps check if the component still exists? */
         this.setState(function() {
           return {
             repos: repos

@@ -2,10 +2,40 @@ const React = require('react');
 const Link = require('react-router-dom').Link;
 const PropTypes = require('prop-types');
 
+function PlayerPreview (props) {
+  return (
+    <div>
+      <div className='player-preview column'>
+        <img
+            className='avatar player-preview__avatar'
+            src={props.avatar}
+            alt={'Avatar for ' + props.username}
+        />
+        <h2 className='player-preview__username'>
+          @{props.username}
+        </h2>
+        <button
+            className='button--link player-preview__reset'
+            onClick={props.onReset.bind(null, props.playerNr)}
+        >
+          Reset player
+        </button>
+      </div>
+    </div>
+  );
+}
+
+PlayerPreview.propTypes = {
+  avatar: PropTypes.string.isRequired,
+  username: PropTypes.string.isRequired,
+  playerNr: PropTypes.string.isRequired,
+  onReset: PropTypes.func.isRequired
+}
+
 
 class PlayerInput extends React.Component {
 
-  constructor (props) {
+  constructor(props) {
     super(props);
 
     this.state = {
@@ -30,7 +60,7 @@ class PlayerInput extends React.Component {
     event.preventDefault();
 
     this.props.onSubmit(
-      this.props.id,
+      this.props.playerNr,
       this.state.username
     );
   }
@@ -62,7 +92,7 @@ class PlayerInput extends React.Component {
 }
 
 PlayerInput.propTypes = {
-  id: PropTypes.string.isRequired,
+  playerNr: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   onSubmit: PropTypes.func.isRequired
 };
@@ -81,6 +111,7 @@ class Battle extends React.Component {
     }
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleReset = this.handleReset.bind(this);
   }
 
   handleSubmit(playerNr, username) {
@@ -88,32 +119,81 @@ class Battle extends React.Component {
       let newState = {};
 
       newState[playerNr + 'Name'] = username;
-      newState[playerNr + 'Image'] = 'https://github.com' + username + '.png?size=200';
+      newState[playerNr + 'Image'] = 'https://github.com/' + username + '.png?size=200';
+
+      return newState;
+    });
+  }
+
+  handleReset(playerNr) {
+    this.setState(function() {
+      let newState = {};
+
+      newState[playerNr + 'Name'] = '';
+      newState[playerNr + 'Image'] = null;
 
       return newState;
     });
   }
 
   render () {
+    let match = this.props.match;
     let playerOneName = this.state.playerOneName;
     let playerTwoName = this.state.playerTwoName;
+    let playerOneImage = this.state.playerOneImage;
+    let playerTwoImage = this.state.playerTwoImage;
 
     return (
       <div>
         <div className='row'>
-          {!playerOneName &&
+          {(!playerOneName) &&
             <PlayerInput
-              id='playerOne'
-              label='Player 1'
-              onSubmit={this.handleSubmit}
-            />}
-          {!playerTwoName &&
+                playerNr='playerOne'
+                label='Player 1'
+                onSubmit={this.handleSubmit}
+            />
+          }
+
+          {(playerOneImage) &&
+            <PlayerPreview
+                avatar={playerOneImage}
+                username={playerOneName}
+                onReset={this.handleReset}
+                playerNr='playerOne'
+            />
+          }
+
+          {(!playerTwoName) &&
             <PlayerInput
-              id='playerTwo'
-              label='Player 2'
-              onSubmit={this.handleSubmit}
-            />}
+                playerNr='playerTwo'
+                label='Player 2'
+                onSubmit={this.handleSubmit}
+            />
+          }
+
+          {(playerTwoImage) &&
+            <PlayerPreview
+                avatar={playerTwoImage}
+                username={playerTwoName}
+                onReset={this.handleReset}
+                playerNr='playerTwo'
+            />
+          }
         </div>
+        {playerOneImage && playerTwoImage &&
+          <div className='row'>
+            <Link
+              className='button'
+              to={{
+                pathname: match.url + '/results',
+                search: '?playerOneName=' + playerOneName +
+                    '&playerTwoName=' + playerTwoName
+              }}
+            >
+              Battle!
+            </Link>
+          </div>
+        }
       </div>
     )
   }

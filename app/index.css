@@ -146,3 +146,16 @@ input {
 .link--button:active {
   transform: translateY(1px);
 }
+
+.button--link {
+  border: none;
+  background: transparent;
+  color: #d0021b;
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+.button--link:hover {
+  cursor: pointer;
+}

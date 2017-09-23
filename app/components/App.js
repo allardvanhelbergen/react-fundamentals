@@ -5,6 +5,7 @@ const Home = require('./Home');
 const Popular = require('./Popular');
 const Battle = require('./Battle');
 const Profile = require('./Profile');
+const Results = require('./Results');
 
 
 const Router = ReactRouter.BrowserRouter;
@@ -20,6 +21,7 @@ class App extends React.Component {
           <Switch>
             <Route exact path='/' component={Home} />
             <Route exact path='/battle' component={Battle} />
+            <Route path='/battle/results' component={Results} />
             <Route path='/popular' component={Popular} />
             <Route path='/profile' component={Profile} />
             <Route render={function() {

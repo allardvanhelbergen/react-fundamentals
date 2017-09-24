@@ -1,10 +1,11 @@
 const axios = require('axios');
 
-// Only use this if you get rate limited
+// Only use this if you get rate limited.
 const CLIENT_ID = 'client id';
 const CLIENT_SECRET = 'client secret';
 let params = '?client_id' + CLIENT_ID + '&client_secret=' + CLIENT_SECRET;
-params = null;
+// Otherwise override params.
+params = '?';
 
 
 function getProfile(username) {

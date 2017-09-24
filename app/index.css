@@ -1,4 +1,4 @@
-body {
+html {
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#c9de96+0,8ab66b+81,398235+100 */
   background: #c9de96; /* Old browsers */
   background: -moz-linear-gradient(top, #c9de96 0%, #8ab66b 81%, #398235 100%); /* FF3.6-15 */
@@ -8,6 +8,9 @@ body {
   color: #333;
   font-family: -apple-system, BlickMacSystemFont, Segoe UI, Robot, Oxygen-Sans,
       Ubuntu, Cantarell, Helvetica Neue, sans-serif;
+  height: 100%;
+  /*background-repeat: no-repeat;*/
+  background-attachment: fixed;
 }
 
 .nav {
@@ -158,4 +161,8 @@ input {
 
 .button--link:hover {
   cursor: pointer;
+}
+
+.player-view__score {
+  text-align: center;
 }
